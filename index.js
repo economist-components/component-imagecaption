@@ -11,12 +11,10 @@ export default class ImageCaption extends React.Component {
   render() {
     return (
       <figure className="TabView--View--Content">
+         {(this.props.textposition==="top") ? <figcaption>{this.props.caption}</figcaption> : null}
          <img src={this.props.src}/>
-         <figcaption>{this.props.caption}</figcaption>
+         {(this.props.textposition!=="top") ? <figcaption>{this.props.caption}</figcaption> : null}
       </figure>
     );
   }
 }
-
-
-
