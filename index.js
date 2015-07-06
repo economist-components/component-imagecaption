@@ -1,5 +1,4 @@
 import React from 'react';
-import json from './json.js';
 
 export default class ImageCaption extends React.Component {
 
@@ -10,7 +9,7 @@ export default class ImageCaption extends React.Component {
 
   render() {
     return (
-      <figure className="TabView--View--Content">
+      <figure>
          {(this.props.textposition==="top") ? <figcaption>{this.props.caption}</figcaption> : null}
          <img src={this.props.src}/>
          {(this.props.textposition!=="top") ? <figcaption>{this.props.caption}</figcaption> : null}
