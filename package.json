@@ -1,5 +1,5 @@
 {
-  "name": "component-imagecaption",
+  "name": "@economist/component-imagecaption",
   "version": "1.0.0",
   "description": "image caption component for the tabview component for the WorldIf",
   "author": "The Economist (http://economist.com)",
