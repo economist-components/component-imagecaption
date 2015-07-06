@@ -6,7 +6,6 @@ export default class ImageCaption extends React.Component {
     super(props);
   }
 
-
   render() {
     return (
       <figure>
