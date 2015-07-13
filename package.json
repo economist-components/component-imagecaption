@@ -13,6 +13,10 @@
     "url": "https://github.com/the-economist-editorial/component-imagecaption/issues"
   },
   "main": "index.js",
+  "files": [
+  "index.css",
+  "index.js"
+  ],
   "eslintConfig": {
     "extends": "strict/react"
   },
