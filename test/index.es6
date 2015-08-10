@@ -1,6 +1,16 @@
 import ImageCaption from './../index.es6';
-import React from 'react/addons';
+import React from 'react';
 const TestUtils = React.addons.TestUtils;
+describe('ImageCaption', () => {
+  it('should exist', () => {
+    ImageCaption.should.be.a('function');
+  });
+
+  it('renders a component', () => {
+    (<ImageCaption/>).should.be.an('object');
+  });
+});
+
 describe('Rendering', () => {
   const renderer = TestUtils.createRenderer();
   let component;
