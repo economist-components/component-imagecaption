@@ -7,7 +7,7 @@ export default class ImageCaption extends React.Component {
       className: React.PropTypes.string,
       caption: React.PropTypes.string,
       src: React.PropTypes.string.isRequired,
-      srcset: React.PropTypes.string,
+      srcSet: React.PropTypes.string,
       alt: React.PropTypes.string,
     };
   }
@@ -19,10 +19,13 @@ export default class ImageCaption extends React.Component {
   }
 
   render() {
-    const figcaption = (this.props.caption) ? <figcaption>{this.props.caption}</figcaption> : '';
+    let figcaption = null;
+    if (this.props.caption) {
+      figcaption = (<figcaption>{this.props.caption}</figcaption>);
+    }
     return (
       <figure className={this.props.className}>
-         <img src={this.props.src} srcSet={this.props.srcset} alt={this.props.alt} />
+         <img src={this.props.src} srcSet={this.props.srcSet} alt={this.props.alt} />
          {figcaption}
       </figure>
     );

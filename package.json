@@ -45,7 +45,7 @@
       {
         "contents": "chai.should();mocha.setup('bdd');"
       },
-      "/test/index.es6?babelify&debug&external=react",
+      "/test/index.es6?babelify&debug",
       {
         "contents": "mocha.checkLeaks();mocha.run();"
       }
@@ -65,7 +65,7 @@
     "provision": "devpack-configure ./package.json",
     "serve": "component-devserver .",
     "test": "npm run test:base -- -R tap",
-    "test:base": "mocha -r babel/register -r @economist/component-testharness",
+    "test:base": "mocha -r babel/register -r @economist/component-testharness test/*.es6",
     "test:watch": "npm run test:base -- -wR min"
   },
   "dependencies": {
