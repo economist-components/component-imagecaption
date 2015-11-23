@@ -1,6 +1,7 @@
-import ImageCaption from './../index.es6';
-import React from 'react/addons';
-const TestUtils = React.addons.TestUtils;
+import ImageCaption from '..';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
+
 describe('ImageCaption', () => {
   it('is compatible with React.Component', () => {
     ImageCaption.should.be.a('function')
@@ -14,12 +15,13 @@ describe('ImageCaption', () => {
   describe('Rendering', () => {
     const renderer = TestUtils.createRenderer();
     it('renders a figure.ImageCaption with an img and figcaption', () => {
-      renderer.render(<ImageCaption
-        caption="A caption"
-        src="src"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
+      renderer.render(
+        <ImageCaption
+          caption="A caption"
+          src="src"
+          srcSet="srcset"
+          alt="An alt attribute for the img"
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
         <figure className="ImageCaption">
           <img src="src" srcSet="srcset" alt="An alt attribute for the img"/>
@@ -29,13 +31,14 @@ describe('ImageCaption', () => {
     });
 
     it('allows overriding of className', () => {
-      renderer.render(<ImageCaption
-        className="foobar"
-        caption="A caption"
-        src="src"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
+      renderer.render(
+        <ImageCaption
+          className="foobar"
+          caption="A caption"
+          src="src"
+          srcSet="srcset"
+          alt="An alt attribute for the img"
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
         <figure className="foobar">
           <img src="src" srcSet="srcset" alt="An alt attribute for the img"/>
@@ -45,12 +48,13 @@ describe('ImageCaption', () => {
     });
 
     it('reflects props.src to the <img> tag', () => {
-      renderer.render(<ImageCaption
-        caption="A caption"
-        src="foobar"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
+      renderer.render(
+        <ImageCaption
+          caption="A caption"
+          src="foobar"
+          srcSet="srcset"
+          alt="An alt attribute for the img"
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
           <figure className="ImageCaption">
             <img src="foobar" srcSet="srcset" alt="An alt attribute for the img"/>
@@ -60,12 +64,13 @@ describe('ImageCaption', () => {
     });
 
     it('reflects props.srcSet to the <img> tag', () => {
-      renderer.render(<ImageCaption
-        caption="A caption"
-        src="src"
-        srcSet="foobar"
-        alt="An alt attribute for the img"
-      />, {});
+      renderer.render(
+        <ImageCaption
+          caption="A caption"
+          src="src"
+          srcSet="foobar"
+          alt="An alt attribute for the img"
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
           <figure className="ImageCaption">
             <img src="src" srcSet="foobar" alt="An alt attribute for the img"/>
@@ -75,12 +80,13 @@ describe('ImageCaption', () => {
     });
 
     it('reflects props.alt to the <img> tag', () => {
-      renderer.render(<ImageCaption
-        caption="A caption"
-        src="src"
-        srcSet="srcset"
-        alt="foobar"
-      />, {});
+      renderer.render(
+        <ImageCaption
+          caption="A caption"
+          src="src"
+          srcSet="srcset"
+          alt="foobar"
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
           <figure className="ImageCaption">
             <img src="src" srcSet="srcset" alt="foobar"/>
@@ -90,12 +96,13 @@ describe('ImageCaption', () => {
     });
 
     it('reflects props.caption as the <figcaption> text', () => {
-      renderer.render(<ImageCaption
-        caption="foobar"
-        src="src"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
+      renderer.render(
+        <ImageCaption
+          caption="foobar"
+          src="src"
+          srcSet="srcset"
+          alt="An alt attribute for the img"
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
           <figure className="ImageCaption">
             <img src="src" srcSet="srcset" alt="An alt attribute for the img"/>
@@ -105,11 +112,12 @@ describe('ImageCaption', () => {
     });
 
     it('does not render <figcaption> if props.caption is omitted', () => {
-      renderer.render(<ImageCaption
-        src="src"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
+      renderer.render(
+        <ImageCaption
+          src="src"
+          srcSet="srcset"
+          alt="An alt attribute for the img"
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
           <figure className="ImageCaption">
             <img src="src" srcSet="srcset" alt="An alt attribute for the img"/>

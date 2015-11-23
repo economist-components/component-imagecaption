@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageCaption from './index.es6';
+import ImageCaption from '.';
 
 export default (
   <div>
