@@ -1,33 +1,32 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import Picture from '@economist/component-picture';
 
-export default class ImageCaption extends React.Component {
-
-  static get propTypes() {
-    return {
-      className: React.PropTypes.string,
-      caption: React.PropTypes.string,
-      src: React.PropTypes.string.isRequired,
-      srcSet: React.PropTypes.string,
-      alt: React.PropTypes.string,
-    };
-  }
-
-  static get defaultProps() {
-    return {
-      className: 'ImageCaption',
-    };
-  }
-
-  render() {
-    let figcaption = null;
-    if (this.props.caption) {
-      figcaption = (<figcaption>{this.props.caption}</figcaption>);
-    }
-    return (
-      <figure className={this.props.className}>
-         <img src={this.props.src} srcSet={this.props.srcSet} alt={this.props.alt} />
-         {figcaption}
-      </figure>
+function ImageCaption({ className = 'image-caption', image, caption }) {
+  let captionEl = null;
+  if (caption) {
+    captionEl = (
+      <figcaption className={`${className}__text`}>
+        {caption}
+      </figcaption>
     );
   }
+  return (
+    <figure className={className}>
+      <Picture
+        className={`${className}__image`}
+        {...image}
+      />
+      {captionEl}
+    </figure>
+  );
 }
+
+if (process.env.NODE_ENV !== 'production') {
+  ImageCaption.propTypes = {
+    className: PropTypes.string,
+    image: PropTypes.shape(Picture.propTypes).isRequired,
+    caption: PropTypes.string,
+  };
+}
+
+export default ImageCaption;

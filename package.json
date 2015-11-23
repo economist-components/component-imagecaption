@@ -123,13 +123,11 @@
     "provision": "devpack-configure ./package.json",
     "serve": "browser-sync start --server --files '*.{html,js}'",
     "test": "karma start",
-    "test:base": "mocha -r babel/register -r @economist/component-testharness test/*.es6",
-    "test:watch": "npm run test:base -- -wR min",
     "watch": "parallelshell 'npm run doc:watch' 'npm run prepublish:watch' 'npm run serve'"
   },
   "dependencies": {
-    "react": "^0.14.3",
-    "srcset": "^1.0.0"
+    "@economist/component-picture": "^1.1.0",
+    "react": "^0.14.3"
   },
   "devDependencies": {
     "@economist/component-devpack": "^3.5.0",
