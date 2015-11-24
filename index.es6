@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Picture from '@economist/component-picture';
 
-function ImageCaption({ className = 'image-caption', image, caption }) {
+function ImageCaption({ className = 'image-caption', sources, alt, caption }) {
   let captionEl = null;
   if (caption) {
     captionEl = (
@@ -14,7 +14,8 @@ function ImageCaption({ className = 'image-caption', image, caption }) {
     <figure className={className}>
       <Picture
         className={`${className}__image`}
-        {...image}
+        sources={sources}
+        alt={alt}
       />
       {captionEl}
     </figure>
@@ -24,8 +25,8 @@ function ImageCaption({ className = 'image-caption', image, caption }) {
 if (process.env.NODE_ENV !== 'production') {
   ImageCaption.propTypes = {
     className: PropTypes.string,
-    image: PropTypes.shape(Picture.propTypes).isRequired,
     caption: PropTypes.string,
+    ...(Picture.propTypes || {}),
   };
 }
 
