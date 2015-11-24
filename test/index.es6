@@ -1,121 +1,128 @@
-import ImageCaption from './../index.es6';
-import React from 'react/addons';
-const TestUtils = React.addons.TestUtils;
+import chai from 'chai';
+chai.should();
+
+import React from 'react';
+import { createRenderer } from 'react-addons-test-utils';
+
+import ImageCaption from '..';
+import Picture from '@economist/component-picture';
+
 describe('ImageCaption', () => {
+
   it('is compatible with React.Component', () => {
-    ImageCaption.should.be.a('function')
-      .and.respondTo('render');
+    ImageCaption.should.be.a('function');
   });
 
   it('renders a React element', () => {
-    React.isValidElement(<ImageCaption/>).should.equal(true);
+    const image = {
+      sources: [
+        { url: 'https://placehold.it/1792x1008', width: 896, height: 504, dppx: 2 },
+        { url: 'https://placehold.it/896x504', width: 896, height: 504, dppx: 1 },
+        { url: 'https://placehold.it/256x384', width: 256, height: 384, dppx: 1 },
+      ],
+      alt: 'An alt attribute for the img',
+    };
+    React.isValidElement(<ImageCaption {...image} />).should.equal(true);
   });
 
   describe('Rendering', () => {
-    const renderer = TestUtils.createRenderer();
-    it('renders a figure.ImageCaption with an img and figcaption', () => {
-      renderer.render(<ImageCaption
-        caption="A caption"
-        src="src"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
-      renderer.getRenderOutput().should.deep.equal(
-        <figure className="ImageCaption">
-          <img src="src" srcSet="srcset" alt="An alt attribute for the img"/>
-          <figcaption>A caption</figcaption>
+
+    const renderer = createRenderer();
+    it('renders a <figure> with a <Picture> and <figcaption>', () => {
+      const image = {
+        sources: [
+          { url: 'https://placehold.it/1792x1008', width: 896, height: 504, dppx: 2 },
+          { url: 'https://placehold.it/896x504', width: 896, height: 504, dppx: 1 },
+          { url: 'https://placehold.it/256x384', width: 256, height: 384, dppx: 1 },
+        ],
+        alt: 'An alt attribute for the img',
+      };
+      renderer.render(
+        <ImageCaption
+          caption="A caption"
+          {...image}
+        />, {});
+      const renderOutput = renderer.getRenderOutput();
+      renderOutput.type.should.equal('figure');
+      renderOutput.props.children[0].type.name.should.equal('Picture');
+      renderOutput.props.children[1].type.should.equal('figcaption');
+      /*
+      Waiting for fix: https://github.com/facebook/react/pull/5299
+      renderOutput.should.deep.equal(
+        <figure className="image-caption">
+          <Picture className="image-caption__image" {...image} />
+          <figcaption className="image-caption__text">A caption</figcaption>
         </figure>
       );
+      */
     });
 
     it('allows overriding of className', () => {
-      renderer.render(<ImageCaption
-        className="foobar"
-        caption="A caption"
-        src="src"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
+      const image = {
+        sources: [
+          { url: 'https://placehold.it/1792x1008', width: 896, height: 504, dppx: 2 },
+          { url: 'https://placehold.it/896x504', width: 896, height: 504, dppx: 1 },
+          { url: 'https://placehold.it/256x384', width: 256, height: 384, dppx: 1 },
+        ],
+        alt: 'An alt attribute for the img',
+      };
+      renderer.render(
+        <ImageCaption
+          className="foobar"
+          caption="A caption"
+          {...image}
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
         <figure className="foobar">
-          <img src="src" srcSet="srcset" alt="An alt attribute for the img"/>
-          <figcaption>A caption</figcaption>
+          <Picture className="foobar__image" {...image} />
+          <figcaption className="foobar__text">A caption</figcaption>
         </figure>
       );
     });
 
-    it('reflects props.src to the <img> tag', () => {
-      renderer.render(<ImageCaption
-        caption="A caption"
-        src="foobar"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
-      renderer.getRenderOutput().should.deep.equal(
-          <figure className="ImageCaption">
-            <img src="foobar" srcSet="srcset" alt="An alt attribute for the img"/>
-            <figcaption>A caption</figcaption>
-          </figure>
-        );
-    });
-
-    it('reflects props.srcSet to the <img> tag', () => {
-      renderer.render(<ImageCaption
-        caption="A caption"
-        src="src"
-        srcSet="foobar"
-        alt="An alt attribute for the img"
-      />, {});
-      renderer.getRenderOutput().should.deep.equal(
-          <figure className="ImageCaption">
-            <img src="src" srcSet="foobar" alt="An alt attribute for the img"/>
-            <figcaption>A caption</figcaption>
-          </figure>
-        );
-    });
-
-    it('reflects props.alt to the <img> tag', () => {
-      renderer.render(<ImageCaption
-        caption="A caption"
-        src="src"
-        srcSet="srcset"
-        alt="foobar"
-      />, {});
-      renderer.getRenderOutput().should.deep.equal(
-          <figure className="ImageCaption">
-            <img src="src" srcSet="srcset" alt="foobar"/>
-            <figcaption>A caption</figcaption>
-          </figure>
-        );
-    });
-
     it('reflects props.caption as the <figcaption> text', () => {
-      renderer.render(<ImageCaption
-        caption="foobar"
-        src="src"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
+      const image = {
+        sources: [
+          { url: 'https://placehold.it/1792x1008', width: 896, height: 504, dppx: 2 },
+          { url: 'https://placehold.it/896x504', width: 896, height: 504, dppx: 1 },
+          { url: 'https://placehold.it/256x384', width: 256, height: 384, dppx: 1 },
+        ],
+        alt: 'An alt attribute for the img',
+      };
+      renderer.render(
+        <ImageCaption
+          caption="foobar"
+          {...image}
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
-          <figure className="ImageCaption">
-            <img src="src" srcSet="srcset" alt="An alt attribute for the img"/>
-            <figcaption>foobar</figcaption>
-          </figure>
-        );
+        <figure className="image-caption">
+          <Picture className="image-caption__image" {...image} />
+          <figcaption className="image-caption__text">foobar</figcaption>
+        </figure>
+      );
     });
 
     it('does not render <figcaption> if props.caption is omitted', () => {
-      renderer.render(<ImageCaption
-        src="src"
-        srcSet="srcset"
-        alt="An alt attribute for the img"
-      />, {});
+      const image = {
+        sources: [
+          { url: 'https://placehold.it/1792x1008', width: 896, height: 504, dppx: 2 },
+          { url: 'https://placehold.it/896x504', width: 896, height: 504, dppx: 1 },
+          { url: 'https://placehold.it/256x384', width: 256, height: 384, dppx: 1 },
+        ],
+        alt: 'An alt attribute for the img',
+      };
+      renderer.render(
+        <ImageCaption
+          {...image}
+        />, {});
       renderer.getRenderOutput().should.deep.equal(
-          <figure className="ImageCaption">
-            <img src="src" srcSet="srcset" alt="An alt attribute for the img"/>
-            {null}
-          </figure>
-        );
+        <figure className="image-caption">
+          <Picture className="image-caption__image" {...image} />
+          {null}
+        </figure>
+      );
     });
+
   });
+
 });
