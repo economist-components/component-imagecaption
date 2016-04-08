@@ -4,7 +4,7 @@ chai.should();
 import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 
-import ImageCaption from '..';
+import ImageCaption from '../src';
 import Picture from '@economist/component-picture';
 
 describe('ImageCaption', () => {
