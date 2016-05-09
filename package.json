@@ -107,7 +107,7 @@
   },
   "dependencies": {
     "@economist/component-picture": "^1.1.0",
-    "react": "^0.14.8||^15.0.0"
+    "react": "^0.14.8"
   },
   "devDependencies": {
     "@economist/doc-pack": "^1.0.7",
@@ -155,8 +155,8 @@
     "postcss-import": "^8.1.0",
     "postcss-reporter": "^1.3.3",
     "postcss-url": "^5.1.1",
-    "react-addons-test-utils": "^0.14.8||^15.0.0",
-    "react-dom": "^0.14.8||^15.0.0",
+    "react-addons-test-utils": "^0.14.8",
+    "react-dom": "^0.14.8",
     "semantic-release": "^4.3.5",
     "stylelint": "^6.2.2",
     "stylelint-config-strict": "^5.0.0",
