@@ -1,7 +1,6 @@
 bundle.*
 .DS_Store
 logs
-*.log
 npm-debug.log*
 pids
 *.pid
@@ -44,3 +43,5 @@ Temporary Items
 lib/
 site/
 site
+*.log
+Icon
