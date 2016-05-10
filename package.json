@@ -107,7 +107,7 @@
   },
   "dependencies": {
     "@economist/component-picture": "^1.2.2",
-    "react": "^0.14.8"
+    "react": "^15.0.2"
   },
   "devDependencies": {
     "@economist/doc-pack": "^1.0.7",
