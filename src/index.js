@@ -1,19 +1,24 @@
 import React, { PropTypes } from 'react';
 import Picture from '@economist/component-picture';
 
-function ImageCaption({ className = 'image-caption', sources, alt, caption }) {
+function ImageCaption({
+  className,
+  sources,
+  alt,
+  caption,
+}) {
   let captionEl = null;
   if (caption) {
     captionEl = (
-      <figcaption className={`${ className }__text`}>
+      <figcaption className="image-caption__text">
         {caption}
       </figcaption>
     );
   }
   return (
-    <figure className={className}>
+    <figure className={[ 'image-caption' ].concat(className).join(' ').trim()}>
       <Picture
-        className={`${ className }__image`}
+        className="image-caption__image"
         sources={sources}
         alt={alt}
       />
