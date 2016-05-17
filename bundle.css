@@ -1,0 +1,4 @@
+/* stylelint-disable block-no-empty */
+/* So postcss isn't trying to compile an empty file */
+.image-caption {
+}
